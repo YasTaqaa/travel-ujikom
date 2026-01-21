@@ -3,7 +3,7 @@
 // Deskripsi: Entry point API jasa travel (login, layanan, pemesanan, transaksi).
 // Initial: Server belum berjalan.
 // Final: Server Elysia berjalan di http://localhost:3001.
-// Author: [Nama], v1.0, 2026-01-21
+// Author: [ilyas], v1.0, 2026-01-21
 
 import { Elysia, t } from 'elysia';
 import cors from '@elysiajs/cors';

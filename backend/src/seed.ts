@@ -1,5 +1,6 @@
 // src/seed.ts
 // Seed user default: admin, kasir, pelanggan.
+// Author: ilyas
 
 import { prisma } from './db.js';
 import bcrypt from 'bcryptjs';

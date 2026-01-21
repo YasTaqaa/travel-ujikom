@@ -3,7 +3,7 @@
 // Deskripsi: Service untuk menangani pemesanan tiket dan transaksi pembayaran.
 // Initial: Data master_layanan dan master_user sudah tersedia di database.
 // Final: Pemesanan tercatat, stok berkurang, dan transaksi pembayaran tersimpan.
-// Author: [Nama], v1.0, 2026-01-21
+// Author: [ilyas], v1.0, 2026-01-21
 
 import { prisma } from '../db.js';
 import type { TbPemesanan, TbTransaksi } from '../generated/client/index.js';
@@ -18,7 +18,7 @@ export class PemesananService {
    * Deskripsi: Membuat pemesanan baru dan mengurangi stok kursi layanan.
    * Initial state: Pelanggan memilih layanan dan mengisi jumlah tiket.
    * Final state: Record pemesanan tersimpan dan stok kursi layanan berkurang.
-   * Author: [Nama], v1.0, 2026-01-21
+   * Author: [ilyas], v1.0, 2026-01-21
    */
   async buatPemesanan(
     userId: number,
@@ -45,7 +45,7 @@ export class PemesananService {
           layananId: dto.layananId,
           jumlahTiket: dto.jumlahTiket,
           totalHarga,
-          status: 'pesan' // menunggu pembayaran
+          status: 'pesan' 
         }
       });
 
@@ -62,7 +62,7 @@ export class PemesananService {
    * Deskripsi: Memproses pembayaran suatu pemesanan.
    * Initial state: Pemesanan berstatus 'pesan' dan belum ada transaksi.
    * Final state: Transaksi tercatat dan status pemesanan berubah menjadi 'bayar'.
-   * Author: [Nama], v1.0, 2026-01-21
+   * Author: [ilyas], v1.0, 2026-01-21
    */
   async bayarPemesanan(
     pemesananId: number,
@@ -116,7 +116,7 @@ export class PemesananService {
    * Deskripsi: Mengambil semua pemesanan milik 1 user (pelanggan).
    * Initial state: User telah login.
    * Final state: Daftar pemesanan user dikembalikan terurut dari terbaru.
-   * Author: [Nama], v1.0, 2026-01-21
+   * Author: [ilyas], v1.0, 2026-01-21
    */
   async getPemesananByUser(userId: number): Promise<TbPemesanan[]> {
     return prisma.tbPemesanan.findMany({
