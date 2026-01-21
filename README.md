@@ -156,4 +156,4 @@ Halaman utama:
 
 /pelanggan – pemesanan tiket oleh pelanggan.
 
-/kasir – proses pembayaran & riwayat transaksi.[file:224]
+/kasir – proses pembayaran & riwayat transaksi.
