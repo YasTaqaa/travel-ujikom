@@ -1,0 +1,62 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/client"
+}
+
+model MasterUser {
+  id        Int           @id @default(autoincrement())
+  username  String        @unique
+  password  String
+  role      String
+  createdAt DateTime      @default(now())
+  pemesanan TbPemesanan[]
+  transaksi TbTransaksi[]
+}
+
+model MasterLayanan {
+  id             Int           @id @default(autoincrement())
+  namaLayanan    String
+  waktuBerangkat DateTime
+  rute           String
+  biaya          Float
+  stokKursi      Int
+  pemesanan      TbPemesanan[]
+}
+
+model TbKendaraan {
+  id        Int    @id @default(autoincrement())
+  nomor     String @unique
+  jenis     String
+  kapasitas Int
+  status    String
+}
+
+model TbPemesanan {
+  id          Int           @id @default(autoincrement())
+  userId      Int
+  layananId   Int
+  jumlahTiket Int
+  totalHarga  Float
+  status      String
+  createdAt   DateTime      @default(now())
+  user        MasterUser    @relation(fields: [userId], references: [id])
+  layanan     MasterLayanan @relation(fields: [layananId], references: [id])
+  transaksi   TbTransaksi?
+}
+
+model TbTransaksi {
+  id          Int         @id @default(autoincrement())
+  pemesananId Int         @unique
+  userId      Int
+  jumlahBayar Float
+  statusBayar String
+  invoicePdf  String?
+  createdAt   DateTime    @default(now())
+  user        MasterUser  @relation(fields: [userId], references: [id])
+  pemesanan   TbPemesanan @relation(fields: [pemesananId], references: [id])
+}
